@@ -1,0 +1,25 @@
+server:
+  port: 3000
+
+spring:
+  application:
+    name: iris-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://test-db-mysql.ns-3448g4cy.svc:3306/iris_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: qtrvvcdr
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.iris.entity
+  configuration:
+    # 开启驼峰映射：sepal_length -> sepalLength
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.example.iris: info
+    org.mybatis: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.iris.mapper.IrisMapper">
+
+    <resultMap id="IrisResultMap" type="com.example.iris.entity.Iris">
+        <id property="id" column="id"/>
+        <result property="sepalLength" column="sepal_length"/>
+        <result property="sepalWidth" column="sepal_width"/>
+        <result property="petalLength" column="petal_length"/>
+        <result property="petalWidth" column="petal_width"/>
+        <result property="species" column="species"/>
+    </resultMap>
+
+    <sql id="BaseColumns">
+        id,
+        sepal_length,
+        sepal_width,
+        petal_length,
+        petal_width,
+        `class` AS species
+    </sql>
+
+    <select id="selectAll" resultMap="IrisResultMap">
+        SELECT
+        <include refid="BaseColumns"/>
+        FROM iris
+        ORDER BY id ASC
+    </select>
+
+    <select id="selectByFilter" resultMap="IrisResultMap">
+        SELECT
+        <include refid="BaseColumns"/>
+        FROM iris
+        <where>
+            <if test="sepalLengthMin != null">
+                AND sepal_length <![CDATA[>=]]> #{sepalLengthMin}
+            </if>
+            <if test="sepalLengthMax != null">
+                AND sepal_length <![CDATA[<=]]> #{sepalLengthMax}
+            </if>
+            <if test="sepalWidthMin != null">
+                AND sepal_width <![CDATA[>=]]> #{sepalWidthMin}
+            </if>
+            <if test="sepalWidthMax != null">
+                AND sepal_width <![CDATA[<=]]> #{sepalWidthMax}
+            </if>
+            <if test="petalLengthMin != null">
+                AND petal_length <![CDATA[>=]]> #{petalLengthMin}
+            </if>
+            <if test="petalLengthMax != null">
+                AND petal_length <![CDATA[<=]]> #{petalLengthMax}
+            </if>
+            <if test="petalWidthMin != null">
+                AND petal_width <![CDATA[>=]]> #{petalWidthMin}
+            </if>
+            <if test="petalWidthMax != null">
+                AND petal_width <![CDATA[<=]]> #{petalWidthMax}
+            </if>
+            <if test="speciesList != null and speciesList.size() > 0">
+                AND `class` IN
+                <foreach collection="speciesList" item="species" open="(" separator="," close=")">
+                    #{species}
+                </foreach>
+            </if>
+        </where>
+        ORDER BY id ASC
+    </select>
+
+    <select id="selectById" resultMap="IrisResultMap">
+        SELECT
+        <include refid="BaseColumns"/>
+        FROM iris
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.example.iris.entity.Iris"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO iris (sepal_length, sepal_width, petal_length, petal_width, `class`)
+        VALUES (#{sepalLength}, #{sepalWidth}, #{petalLength}, #{petalWidth}, #{species})
+    </insert>
+
+    <update id="updateById" parameterType="com.example.iris.entity.Iris">
+        UPDATE iris
+        SET sepal_length = #{sepalLength},
+            sepal_width = #{sepalWidth},
+            petal_length = #{petalLength},
+            petal_width = #{petalWidth},
+            `class`      = #{species}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM iris
+        WHERE id = #{id}
+    </delete>
+</mapper>
