@@ -11,3 +11,6 @@ training_loss.png
 venv/
 env/
 target/
+front/node_modules/
+front/dist/
+front/.env

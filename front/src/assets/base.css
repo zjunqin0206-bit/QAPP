@@ -1,0 +1,59 @@
+/*
+ * 文件说明：全局设计变量与基础标签样式文件，定义颜色、圆角、阴影和排版基础。
+ * 维护重点：主题级变量统一在这里维护，避免散落到各页面样式中。
+ */
+:root {
+  --bg: #f5f5f7;
+  --surface: rgba(255, 255, 255, 0.74);
+  --surface-strong: rgba(255, 255, 255, 0.92);
+  --surface-muted: rgba(255, 255, 255, 0.58);
+  --border: rgba(31, 111, 104, 0.08);
+  --text: #1c2a2a;
+  --muted: #5f7774;
+  --accent: #1f6f68;
+  --accent-strong: #2a9d8f;
+  --accent-soft: rgba(42, 157, 143, 0.14);
+  --danger: #b44737;
+  --danger-soft: rgba(180, 71, 55, 0.12);
+  --shadow: 0 24px 80px rgba(34, 62, 57, 0.1);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 209, 102, 0.18), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(42, 157, 143, 0.14), transparent 22%),
+    linear-gradient(180deg, #fbfbf7 0%, #eef6f3 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'PingFang SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
