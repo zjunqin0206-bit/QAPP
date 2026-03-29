@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+artifacts/
+training_accuracy.png
+training_loss.png
+.venv/
+venv/
+env/
+target/

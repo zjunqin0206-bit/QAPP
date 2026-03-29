@@ -1,0 +1,7 @@
+fastapi
+matplotlib
+numpy
+pymysql
+scikit-learn
+torch
+uvicorn
