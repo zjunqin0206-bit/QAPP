@@ -65,7 +65,7 @@ def _parse_mysql_url(db_url: str) -> dict[str, Any]:
 
 DB_URL = os.getenv(
     "DB_URL",
-    "mysql://root:qtrvvcdr@test-db-mysql.ns-3448g4cy.svc:3306/iris_db",
+    "mysql://root:123456@127.0.0.1:3306/iris_db",
 )
 DEFAULT_QUERY = (
     "SELECT sepal_length, sepal_width, petal_length, petal_width, class AS label FROM iris"
